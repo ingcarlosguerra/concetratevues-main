@@ -35,14 +35,18 @@ header {
 }
 
 .boton-reiniciar {
-  background: #0383bc;
+  background:  #64489d;
   color: white;
   position: absolute;
   font-size: 5vw;
-  left: 32vw;
-  top: 72vh;
-  border-radius: 1vw;
-  padding: 0 8vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  left: 34vw;
+  top: 73vh;
+  border-radius: 2vw;
+  padding: 2vw;
+  width: 30%;
+  border-style: double;
+
 }
 
 .carta {
@@ -53,7 +57,7 @@ header {
 .portada {
   width: 200px;
   height: 200px;
-  background-color: #93469c;
+  background-color:#00C7D3;
 }
 
 .contenido {
