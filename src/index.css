@@ -90,3 +90,18 @@ body {
 div:focus {
   outline: none !important;
 }
+
+.mensaje-ganador {
+  position: fixed; /* Fijo en la pantalla, sobre otros elementos */
+  top: 28%; /* Espaciado desde la parte superior de la pantalla */
+  left: 50%; /* Centrado horizontal */
+  transform: translateX(-50%); /* Ajuste fino para centrar exactamente el elemento */
+  background-color: transparent; /* Fondo blanco */
+  color: white; /* Texto en color negro */
+  padding: 0px; /* Espacio alrededor del texto */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px ; /* Sombra ligera para darle profundidad */
+  z-index: 1000; /* Asegura que el mensaje esté sobre otros elementos */
+  font-size: 40px; /* Tamaño de la tipografía */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Tipo de letra (puedes cambiarla según prefieras) */
+}

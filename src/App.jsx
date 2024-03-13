@@ -9,7 +9,9 @@ const getEstadoInicial = () => {
     baraja,
     parejaSeleccionada: [],
     estaComparando: false,
-    numeroDeIntentos: 0    
+    numeroDeIntentos: 0,
+    game: false, // Añadido al estado inicial
+    mostrarMensajeGanador: false, // Añadido al estado inicial si planeas usarlo
   };
 }
 
@@ -21,18 +23,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" >
-        <div>
+      <div className="App">
         <Header
           numeroDeIntentos={this.state.numeroDeIntentos}
           resetearPartida={() => this.resetearPartida()}
         />
-        <Tablero 
+        <Tablero
           baraja={this.state.baraja}
           parejaSeleccionada={this.state.parejaSeleccionada}
           seleccionarCarta={(carta) => this.seleccionarCarta(carta)}
         />
-        </div>
+        {this.state.game && (
+          <div className="mensaje-ganador">
+            ¡Lo lograste en {this.state.numeroDeIntentos} intentos!
+          </div>
+        )}
       </div>
     );
   }
@@ -41,7 +46,7 @@ class App extends Component {
     if (
       this.state.estaComparando ||
       this.state.parejaSeleccionada.indexOf(carta) > -1 ||
-      carta.fueAdivinida
+      carta.fueAdivinada
     ) {
       return;
     }
@@ -79,28 +84,24 @@ class App extends Component {
         baraja,
         estaComparando: false,
         numeroDeIntentos: this.state.numeroDeIntentos + 1
-      })
-    }, 1000)
-}
+      });
+    }, 1000);
+  }
 
-esPareja(carta1, carta2) {
+  esPareja(carta1, carta2) {
     const nombreCarta1 = carta1.icono.split("/")[1].split("-")[0];
     const nombreCarta2 = carta2.icono.split("/")[1].split("-")[0];
     return nombreCarta1 === nombreCarta2;
-}
+  }
 
   verificarSiHayGanador(baraja) {
-    if (
-      baraja.filter((carta) => !carta.fueAdivinada).length === 0
-    ) {
-      alert(`Ganaste en ${this.state.numeroDeIntentos} intentos!`);
+    if (baraja.filter((carta) => !carta.fueAdivinada).length === 0) {
+      this.setState({game: true}); // Actualizado para cambiar el estado correctamente
     }
   }
 
   resetearPartida() {
-    this.setState(
-      getEstadoInicial()
-    );
+    this.setState(getEstadoInicial());
   }
 }
 
